@@ -1,0 +1,53 @@
+* {
+    padding: 0;
+    margin: 0
+}
+body {
+    font-family: verdana;
+    font-size: 12px;
+}
+
+/* 评论区 */
+
+#comment,#liar {
+    width: 600px;
+    height: 200px;
+    padding: 5px 10px;
+    margin: 100px 100px 0;
+    border: 1px solid #999;
+    outline: 0 none;
+    line-height: 16px;
+    overflow-x: auto;
+}
+#comment .user_name {
+    display: inline-block;
+    height: 16px;
+    line-height: 16px;
+    background-color: #359eda;
+    padding: 0 5px;
+    /* margin:0 3px; */
+    color: #fff;
+    border: 0 none;
+    border-radius: 3px;
+    outline: 0 none;
+    font-size: 12px;
+    vertical-align: top;
+}
+
+/* 用户列表 */
+
+#name_list {
+    display: none;
+    width: 100px;
+    margin: 0 0 0 100px;
+    border: 1px solid #999;
+    border-top: 0 none;
+    border-bottom: 0 none;
+    list-style-type: none;
+}
+#name_list>li {
+    height: 19px;
+    line-height: 19px;
+    text-align: center;
+    border-bottom: 1px solid #bbb;
+}
