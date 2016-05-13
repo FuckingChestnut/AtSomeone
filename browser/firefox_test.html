@@ -3,27 +3,13 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Call</title>
-    <link rel="stylesheet" type="text/css" href="./demo.css">
+    <title>Firefox_test</title>
+    <link rel="stylesheet" type="text/css" href="../demo.css">
 </head>
 
 <body>
-    <!-- plaintext-only -->
-    <div id="comment" contenteditable="true" spellcheck="false">
-        wahahahahah <input type="button" value="haha" class="user_name" /> wahahahahah
-        <br>
+    <div id="comment" contenteditable="true" spellcheck="false">仅仅用做测试 <input type="button" value="pengchuan" class="user_name" /> 仅仅用做测试<br>
     </div>
-    <script type="text/javascript">
-    var comment = document.getElementById('comment');
-    comment.addEventListener("keyup", function(e) {
-        var select = document.getSelection(),
-            range = select.getRangeAt(0);
-        console.log("select:");
-        console.log(select);
-        console.log("range:");
-        console.log(range);
-    })
-    </script>
 </body>
 
 </html>
