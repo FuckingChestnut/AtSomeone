@@ -2,7 +2,6 @@
  * temp_options说明
  * comment：评论框节点
  * tag_class：标签类名
- * trigger_word：触发字符
  */
 
 (function() {
@@ -36,15 +35,6 @@
             }
             return temp_browser;
         }()),
-        //添加事件监听
-        bindEvent = function(temp_node, temp_event, temp_function) {
-            if (document.attachEvent) { //ie
-                temp_node.attachEvent("on" + temp_event, temp_function);
-            }
-            else if (document.addEventListener) { //chrome
-                temp_node.addEventListener(temp_event, temp_function);
-            }
-        },
         pengchuan = function(temp_options) {
             this.states = {
                 "selection": undefined,
@@ -54,6 +44,7 @@
                 "browser": temp_browser_info
             };
             this.options = temp_options;
+
         };
     //挂载到全局变量
     window.pengchuan = pengchuan;
