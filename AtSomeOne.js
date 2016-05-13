@@ -2,6 +2,7 @@
  * temp_options说明
  * comment：评论框节点
  * tag_class：标签类名
+ * trigger_word：触发字符
  */
 
 (function() {
@@ -35,6 +36,15 @@
             }
             return temp_browser;
         }()),
+        //添加事件监听
+        bindEvent = function(temp_node, temp_event, temp_function) {
+            if (document.attachEvent) { //ie
+                temp_node.attachEvent("on" + temp_event, temp_function);
+            }
+            else if (document.addEventListener) { //chrome
+                temp_node.addEventListener(temp_event, temp_function);
+            }
+        },
         pengchuan = function(temp_options) {
             this.states = {
                 "selection": undefined,
@@ -70,6 +80,17 @@
         setRangePosition: function(temp_range, temp_node, temp_index) {
             temp_range.setStart(temp_node, temp_index);
             temp_range.setEnd(temp_node, temp_index);
+        },
+        //获取前一个字符
+        getPreWord: function(temp_range) {
+            var temp_start_index = temp_range.startOffset,
+                temp_word = undefined;
+            if (temp_start_index > 0) {
+                temp_start_index = temp_start_index - 1;
+                temp_range.setStart(temp_range.startContainer, temp_start_index);
+                temp_word = temp_range.toString();
+            }
+            return temp_word;
         },
         //创建文字节点
         createTextNode: function(temp_string) {
@@ -153,6 +174,30 @@
             else {
                 temp_parent_node.insertBefore(temp_node, temp_last_node);
             }
+        },
+        //深度复制对象
+        copyObject: function(temp_object) {
+            if (temp_object === null) {
+                return temp_object;
+            }
+            var temp_object_type = typeof temp_object;
+            if (temp_object_type !== "object") {
+                return temp_object;
+            }
+            var temp_object_is_window = temp_object.window === temp_object ? true : false,
+                temp_new_object = {};
+            if (temp_object_is_window) {
+                return temp_object;
+            };
+            for (var temp_key in temp_object) {
+                var temp_value = temp_object[temp_key],
+                    temp_value_type = typeof temp_value;
+                if (temp_value_type === "object") {
+                    temp_value = arguments.callee(temp_value);
+                };
+                temp_new_object[temp_key] = temp_value;
+            }
+            return temp_new_object;
         }
     };
     //逻辑函数
@@ -238,14 +283,10 @@
                         "tag_name": "br"
                     },
                     temp_new_line_node = this.basicFun.createElement(temp_options);
-                    //temp_new_line_space = this.basicFun.createTextNode("\u00A0");
+                //temp_new_line_space = this.basicFun.createTextNode("\u00A0");
                 temp_comment_node.appendChild(temp_new_line_node);
                 //temp_comment_node.appendChild(temp_new_line_space);
             };
-        },
-        //是否在编辑框内
-        inComment: function() {
-
         }
     };
     //添加标签
