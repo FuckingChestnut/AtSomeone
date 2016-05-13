@@ -281,7 +281,7 @@
         }
     };
     //添加标签
-    pengchuan.prototype.setTag = function() {
+    pengchuan.prototype.setTag = function(tag_options) {
         //获取range对象
         this.states.selection = pengchuan.prototype.basicFun.getSelection();
         this.states.range = pengchuan.prototype.basicFun.getRange(this.states.selection);
